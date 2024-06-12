@@ -22,10 +22,10 @@ let serializer = HashingSerializer { digest: &mut digest };
 vk.serialize(serializer).unwrap();
 ```
 
-[crate-image]: https://img.shields.io/crates/v/hash-serializer.svg
-[crate-link]: https://crates.io/crates/hash-serializer
-[docs-image]: https://docs.rs/hash-serializer/badge.svg
-[docs-link]: https://docs.rs/hash-serializer/
-[license-image]: https://img.shields.io/crates/l/hash-serializer
-[coverage-image]: https://codecov.io/gh/fjarri/hash-serializer/branch/master/graph/badge.svg
-[coverage-link]: https://codecov.io/gh/fjarri/hash-serializer
+[crate-image]: https://img.shields.io/crates/v/hashing-serializer.svg
+[crate-link]: https://crates.io/crates/hashing-serializer
+[docs-image]: https://docs.rs/hashing-serializer/badge.svg
+[docs-link]: https://docs.rs/hashing-serializer/
+[license-image]: https://img.shields.io/crates/l/hashing-serializer
+[coverage-image]: https://codecov.io/gh/fjarri/hashing-serializer/branch/master/graph/badge.svg
+[coverage-link]: https://codecov.io/gh/fjarri/hashing-serializer
