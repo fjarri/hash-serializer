@@ -1,0 +1,23 @@
+[package]
+name = "hashing-serializer"
+version = "0.1.0"
+authors = ['Bogdan Opanchuk <bogdan@opanchuk.net>']
+license = "MIT"
+description = "Serialize serde-implementing structures directly into a hash"
+repository = "https://github.com/fjarri/hash-serializer"
+readme = "README.md"
+categories = ["no-std", "serde"]
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", default-features = false }
+digest = { version = "0.10", default-features = false }
+
+[dev-dependencies]
+sha2 = "0.10"
+k256 = { version = "0.13", features = ["serde", "pem"] }
+rand_core = "0.6"
+
+[features]
+default = []
+alloc = ["serde/alloc"]
