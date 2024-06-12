@@ -1,6 +1,6 @@
 [package]
 name = "hashing-serializer"
-version = "0.1.0"
+version = "0.1.1"
 authors = ['Bogdan Opanchuk <bogdan@opanchuk.net>']
 license = "MIT"
 description = "Serialize serde-implementing structures directly into a hash"
