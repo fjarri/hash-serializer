@@ -91,6 +91,16 @@ fn try_into_sequence_length(len: usize) -> Result<u128, Error> {
         .ok_or(Error::SequenceLengthTooLarge)
 }
 
+// Implement `serialize_$ty` for int types
+macro_rules! impl_trivial_serialize {
+    ($method_name:ident , $t:ty) => {
+        fn $method_name(self, v: $t) -> Result<Self::Ok, Self::Error> {
+            self.digest.update(&v.to_be_bytes());
+            Ok(())
+        }
+    };
+}
+
 impl<'a, T: Update> Serializer for HashingSerializer<'a, T> {
     type Ok = ();
     type Error = Error;
@@ -107,55 +117,19 @@ impl<'a, T: Update> Serializer for HashingSerializer<'a, T> {
         Ok(())
     }
 
-    fn serialize_i8(self, v: i8) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
+    impl_trivial_serialize!(serialize_i8, i8);
+    impl_trivial_serialize!(serialize_i16, i16);
+    impl_trivial_serialize!(serialize_i32, i32);
+    impl_trivial_serialize!(serialize_i64, i64);
 
-    fn serialize_i16(self, v: i16) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
+    impl_trivial_serialize!(serialize_u8, u8);
+    impl_trivial_serialize!(serialize_u16, u16);
+    impl_trivial_serialize!(serialize_u32, u32);
+    impl_trivial_serialize!(serialize_u64, u64);
 
-    fn serialize_i32(self, v: i32) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
+    impl_trivial_serialize!(serialize_f32, f32);
+    impl_trivial_serialize!(serialize_f64, f64);
 
-    fn serialize_i64(self, v: i64) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
-
-    fn serialize_u8(self, v: u8) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
-
-    fn serialize_u16(self, v: u16) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
-
-    fn serialize_u32(self, v: u32) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
-
-    fn serialize_u64(self, v: u64) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
-
-    fn serialize_f32(self, v: f32) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
-
-    fn serialize_f64(self, v: f64) -> Result<Self::Ok, Self::Error> {
-        self.digest.update(&v.to_be_bytes());
-        Ok(())
-    }
     fn serialize_char(self, v: char) -> Result<Self::Ok, Self::Error> {
         // `char` is always at most 4 bytes, regardless of the platform,
         // so this conversion is safe.
