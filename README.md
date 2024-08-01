@@ -12,7 +12,7 @@ use rand_core::OsRng;
 use serde::Serialize;
 use sha2::Sha256;
 
-use hashing_serializer::HashSerializer;
+use hashing_serializer::HashingSerializer;
 
 let sk = SigningKey::random(&mut OsRng);
 let vk = sk.verifying_key();
