@@ -1,12 +1,12 @@
 [package]
 name = "hashing-serializer"
-version = "0.1.1"
+version = "0.2.0-pre.0"
 authors = ['Bogdan Opanchuk <bogdan@opanchuk.net>']
 license = "MIT"
 description = "Serialize serde-implementing structures directly into a hash"
 repository = "https://github.com/fjarri/hashing-serializer"
 readme = "README.md"
-categories = ["no-std", "serde"]
+categories = ["no-std"]
 edition = "2021"
 
 [dependencies]
